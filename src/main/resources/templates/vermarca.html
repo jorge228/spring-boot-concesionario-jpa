@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-5">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<img th:if="${#strings.length(marca.logo) > 0}"
+					class="img-thumbnail rounded float-left mr-5" style="max-width: 25%;"
+					th:src="@{'/uploads/' + ${marca.logo}}" th:alt="${marca.logo}" />
+
+				<ul class="list-group">
+					<li class="list-group-item" th:text="'Nombre: ' + ${marca.nombre}"></li>
+					<li class="list-group-item" th:text="'Nacionalidad: ' + ${marca.pais}"></li>
+					<li class="list-group-item" th:text="'Fundador: ' + ${marca.presidente}"></li>
+				</ul>
+
+				<a th:href="@{/marca/} + ${marca.id}" th:text="'Ver Coches'"
+					class="btn btn-primary btn-xs m-5"></a>
+
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

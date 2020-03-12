@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-5">
+
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<img th:if="${#strings.length(coche.imagen) > 0}"
+					class="img-thumbnail rounded float-left mr-5" style="max-width: 25%;"
+					th:src="@{'/uploads/' + ${coche.imagen}}" th:alt="${coche.imagen}" />
+
+				<ul class="list-group">
+					<li class="list-group-item" th:text="'Modelo: ' + ${coche.modelo}"></li>
+					<li class="list-group-item" th:text="'Precio: ' + ${coche.precio} + ' €'"></li>
+					<li class="list-group-item" th:text="'Velocidad Máxima: ' + ${coche.velocidad} + ' Km/h'"></li>
+				</ul>
+				<!-- <a th:href="@{/formcoche/} + ${coche.id}" th:text="'Editar'"
+					class="btn btn-primary btn-xs m-5"></a> <a
+					th:href="@{/eliminarcoche/} + ${coche.id}" th:text="'Eliminar'"
+					class="btn btn-danger btn-xs"
+					onclick="return confirm('¿Está seguro que quiere eliminar este coche?')"></a> -->
+					<a th:href="@{/coches}" th:text="'Volver'"
+					class="btn btn-primary btn-xs m-5 float-right"></a>
+			</div>
+		</div>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

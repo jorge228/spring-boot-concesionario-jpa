@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	<!-- inicio -->
+	<div class="container-fluid py-5">
+		<div class="card-columns">
+			<div class="card border-info m-4" style="max-width: 20rem;"
+				th:each="coche: ${coches}">
+				<a th:href="@{/vercoche/} + ${coche.id}"><img
+					th:src="@{'/uploads/' + ${coche.imagen}}" th:alt="${coche.imagen}"
+					class="card border-info card-img-top mx-auto d-block img-thumbnail" /></a>
+				<div class="card-body">
+					<h3 class="card-title text-center" th:text="${coche.modelo}"></h3>
+					<hr>
+					<p class="card-text" th:text="'Precio: ' + ${coche.precio} + ' €'"></p>
+					<p class="card-text" th:text="'Velocidad Máx.: ' + ${coche.velocidad} + ' Km/h'"></p>
+					<p class="card-text" th:text="'Lanzamiento: ' + ${coche.fecha}"></p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col"></div>
+			<div class="col">
+				<nav th:replace="paginator-nav ::  paginator"></nav>
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+	<!-- fin -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

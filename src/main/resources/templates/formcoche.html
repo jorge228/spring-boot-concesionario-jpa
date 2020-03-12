@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-5">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+		<!-- va hacia la ruta value="/formmarca", method = RequestMethod.POST 
+		y mapeamos el objeto con el th:object
+	-->
+		<form th:action="@{/formcoche}" th:object="${coche}" method="post" enctype="multipart/form-data">
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Marca</label>
+				<div class="col-sm-6">
+					<select class="form-control" name="idMarca">
+						<option th:each="marca: ${marcas}" th:value="${marca.id}"
+							th:text="${marca.nombre}"></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Modelo</label>
+				<div class="col-sm-6">
+					<input type="text" th:field="*{modelo}" class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Precio</label>
+				<div class="col-sm-6">
+					<input type="text" th:field="*{precio}" class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Velocidad</label>
+				<div class="col-sm-6">
+					<input type="text" th:field="*{velocidad}" class="form-control" />
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Fecha</label>
+				<div class="col-sm-6">
+					<input type="date" th:field="*{fecha}" class="form-control" />
+				</div>
+			</div>
+			<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Imagen</label>
+						<div class="col-sm-6">
+							<input type="file" name="file" class="form-control" />
+						</div>
+					</div>
+
+			<input type="submit" value="Guardar Coche" class="btn btn-primary" />
+		</form>
+	</div>
+</div>
+</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
